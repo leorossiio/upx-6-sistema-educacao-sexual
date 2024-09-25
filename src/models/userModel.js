@@ -1,10 +1,20 @@
-//Nome string
-//email string -> será o login
-//Senha string cript
-//Funcao string-> adm e medico
-//CRM long int podendo ser null caso nao for medico
-//Celular long int
-//Status string (Ativo ou Inativo) -> Vão ser criados com status Inativo e serão aprovados pelo ADM, onde terá a validação do CRM 
+const mongoose = require("mongoose");
+
+const UserSchema = new mongoose.Schema({
+    idUsuario: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true },
+    nome: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    senha: { type: String, required: true },
+    funcao: { type: String, required: true },
+    dataCriacao: { type: Date, default: Date.now },
+    crm: { type: String, required: false },
+    celular: { type: String, required: true },
+    status: { type: String, required: true }
+});
+
+const UserModel = mongoose.model("User", UserSchema);
+
+module.exports = UserModel;
 
 // Site de validação:
 // https://portal.cfm.org.br/busca-medicos
