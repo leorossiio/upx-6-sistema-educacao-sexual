@@ -8,12 +8,11 @@ dotenv.config();
 
 import loginController from "./Controllers/loginController.js";
 import userController from "./Controllers/autenticacao/userController.js";
-import treinoController from "./Controllers/autenticacao/treinoController.js";
-import exercicioController from "./Controllers/autenticacao/exercicioController.js";
-import dietaController from "./Controllers/autenticacao/dietaController.js";
+// import treinoController from "./Controllers/autenticacao/treinoController.js";
+// import exercicioController from "./Controllers/autenticacao/exercicioController.js";
+// import dietaController from "./Controllers/autenticacao/dietaController.js";
 
 const servidor = express();
-
 
 servidor.use(express.json());
 
@@ -28,9 +27,9 @@ servidor.use(cors(corsOptions));
 
 servidor.use("/login", loginController);
 servidor.use("/users", userController);
-servidor.use("/treino", treinoController);
-servidor.use("/exercicio", exercicioController);
-servidor.use("/dieta", dietaController);
+// servidor.use("/treino", treinoController);
+// servidor.use("/exercicio", exercicioController);
+// servidor.use("/dieta", dietaController);
 
 
 // Conexão com o banco de dados MongoDB
