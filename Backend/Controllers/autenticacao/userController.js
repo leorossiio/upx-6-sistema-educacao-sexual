@@ -20,6 +20,7 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
 
     await userService.createUser({
       nome,
+      crm,
       email,
       senha,
       funcao: "MEDICO",
@@ -100,6 +101,7 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
     await userService.createUser({
       nome,
       email,
+      crm,
       senha,
       funcao,
       statusAtual: "ATIVO"

@@ -12,16 +12,17 @@ class UserService {
 
   generateId() {
     const uuid = uuidv4();
-    const hash = crypto.createHash('sha256').update(uuid).digest('hex');
+    const hash = crypto.createHash('sha256' ).update(uuid).digest('hex');
     return hash.slice(0, 24);
   }
 
-  async createUser({ nome, email, senha, funcao, statusAtual }) {
+  async createUser({ nome,crm, email, senha, funcao, statusAtual }) {
     const senhaEncrypt = await bcryptjs.hash(senha, 10);
     const idUser = this.generateId();
     const user = {
       idUser,
       nome,
+      crm,
       email,
       senha: senhaEncrypt,
       funcao,
