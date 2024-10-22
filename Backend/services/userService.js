@@ -1,5 +1,5 @@
 const bcryptjs = require("bcryptjs");
-const UserModel = require("../../Backend/models/user");
+const UserModel = require("../models/userModel");
 const { v4: uuidv4 } = require("uuid");
 const crypto = require("crypto");
 
