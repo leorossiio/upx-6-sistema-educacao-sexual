@@ -71,7 +71,7 @@ userController.get("/:email", auth, async (req, res) => {
 });
 
 // Rota para deletar um usuário específico pelo ID
-userController.delete("/:idUser", auth, async (req, res) => {
+userController.delete("/deletarUsuario/:idUser", auth, async (req, res) => {
   try {
     const user = await userService.deleteUserById(req.params.idUser);
     if (!user) {
