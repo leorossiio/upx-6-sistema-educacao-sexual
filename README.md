@@ -15,9 +15,9 @@ node index.mjs;
 
 # Passos para rodar o React/Frontend:
 
-cd /blu-plataform;
-npm install react-router-dom
-npm install sass
+cd /blu-plataform;  
+npm install react-router-dom;  
+npm install sass;  
 
 Inicie o servidor:
 npm start
