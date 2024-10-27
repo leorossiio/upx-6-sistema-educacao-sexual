@@ -1,0 +1,89 @@
+.cadastro-container {
+    width: 600px; /* Caixa maior para acomodar a imagem */
+    background-color: #A1D5D6;
+    border-radius: 40px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    display: flex; /* Alinhar os campos e imagem lado a lado */
+    justify-content: space-between;
+    position: relative;
+    margin: auto;
+    margin-top: 5%;
+  }
+  
+  .cadastro-card {
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .cadastro-card h2 {
+    font-size: 36px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombreado leve */
+    margin-bottom: 30px;
+    padding-right: 40px;
+  }
+  
+  .cadastro-card form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cadastro-card label {
+    font-size: 14px;
+    color: white;
+    display: block;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombreado leve */
+    margin-bottom: 5px;
+  }
+  
+  .cadastro-card input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cadastro-card button:hover {
+    background-color: #00796b;
+  }
+
+  .cadastro-image {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cadastro-image img {
+    max-width: 300px;
+    padding-right: 30px;
+}
+
+.cadastro-card button {
+    width: 150px;
+    padding: 10px; /* Botão menor */
+    background-color: #1E837E;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px; /* Diminuído */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Animação de crescimento */
+.hvr-grow {
+  display: inline-block;
+  transform: translateZ(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hvr-grow:hover {
+  transform: scale(1.05);
+}

@@ -1,0 +1,212 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Menu de Navegação */
+nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    background: #A1D5D6;
+    width: 80px;  /* Collapsed width */
+    overflow: hidden;
+    transition: width 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+nav ul li {
+    text-align: center;
+    padding: 20px 0;
+}
+
+nav ul li a {
+    position: relative;
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Ícones do menu */
+.nav-icon {
+    margin-right: 10px;
+    padding-left: 16px;
+    height: 40px;
+    width: 40px;
+}
+
+/* Texto do menu inicialmente oculto */
+.nav-item {
+    opacity: 0;
+    margin-left: 10px;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+nav:hover {
+    width: 300px;
+}
+
+nav:hover .nav-item {
+    opacity: 1;
+}
+
+nav:hover a {
+    justify-content: flex-start;
+}
+
+nav:hover .search-box {
+    opacity: 1;
+    width: 160px;
+    padding: 0 10px;
+    background: #fff;
+    color: #333;
+}
+
+a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Configuração do corpo da página */
+body {
+    background-color: #f0f4f8;
+    overflow: hidden;
+}
+
+/* Configuração do contêiner de partículas */
+#particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Partículas no fundo */
+}
+
+/* Configuração do contêiner de login */
+.login-container {
+    z-index: 1;
+    width: 600px;
+    padding: 50px;
+    background-color: #A1D5D6;
+    border-radius: 40px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.login-form {
+    flex: 1;
+}
+
+.login-container h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-container p {
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    white-space: nowrap;
+    max-width: 100px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: white;
+    display: block;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(160, 215, 211, 0.5);
+}
+
+button {
+    width: 100px;
+    padding: 10px;
+    background-color: #1E837E;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #16615C;
+}
+
+.login-image {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-image img {
+    max-width: 300px;
+    padding-left: 50px;
+    padding-top: 90px;
+}
+
+/* Animação de crescimento */
+.hvr-grow {
+    display: inline-block;
+    transform: translateZ(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.hvr-grow:hover {
+    transform: scale(1.05);
+}
