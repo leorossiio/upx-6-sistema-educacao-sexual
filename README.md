@@ -13,13 +13,14 @@ npm install --legacy-peer-deps;
 Inicie o servidor:
 node index.mjs;
 
-# Passos para rodar o Angular/Frontend:
+# Passos para rodar o React/Frontend:
 
-cd /frontend;
-npm install --legacy-peer-deps;
+cd /blu-plataform;
+npm install react-router-dom
+npm install sass
 
 Inicie o servidor:
-ng serve;
+npm start
 
 # .env
 PORT = 3000 || <Porta de preferência, certificar-se de alterar as rotas>
