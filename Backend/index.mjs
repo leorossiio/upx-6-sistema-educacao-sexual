@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
@@ -7,30 +6,18 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import loginController from "./Controllers/loginController.js";
-import userController from "./Controllers/autenticacao/userController.js";
-// import treinoController from "./Controllers/autenticacao/treinoController.js";
-// import exercicioController from "./Controllers/autenticacao/exercicioController.js";
-// import dietaController from "./Controllers/autenticacao/dietaController.js";
+import userController from "./Controllers/autenticadas/userController.js";
+// import perguntaController from "./Controllers/autenticadas/perguntaController.js";
+// import repostaController from "./Controllers/autenticadas/repostaController.js";
 
 const servidor = express();
 
 servidor.use(express.json());
 
-// Configurações do CORS
-const corsOptions = {
-  origin: "http://localhost:4200",
-  optionsSuccessStatus: 200
-};
-
-servidor.use(cors(corsOptions));
-
-
 servidor.use("/login", loginController);
 servidor.use("/users", userController);
-// servidor.use("/treino", treinoController);
-// servidor.use("/exercicio", exercicioController);
-// servidor.use("/dieta", dietaController);
-
+// servidor.use("/perguntas", perguntaController);
+// servidor.use("/repostas", repostaController)
 
 // Conexão com o banco de dados MongoDB
 const PORT = process.env.PORT || 3000;  // Porta padrão caso não esteja definida no .env

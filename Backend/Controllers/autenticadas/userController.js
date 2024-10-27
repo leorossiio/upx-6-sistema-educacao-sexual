@@ -20,11 +20,10 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
 
     await userService.createUser({
       nome,
-      crm,
       email,
       senha,
       funcao: "MEDICO",
-      statusAtual: "INATIVO"
+      statusAtual: "INATIVO",
     });
 
     return res.status(201).json({ mensagem: "Usuário criado com sucesso!" });
@@ -101,10 +100,9 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
     await userService.createUser({
       nome,
       email,
-      crm,
       senha,
       funcao,
-      statusAtual: "ATIVO"
+      statusAtual: "ATIVO",
     });
 
     return res.status(201).json({ mensagem: "Usuário criado com sucesso!" });
