@@ -1,3 +1,7 @@
+// Funções presentes:
+// [ADM, USUARIO, MEDICO];
+
+
 const express = require("express");
 const auth = require("../../middlewares/authentication");
 const userService = require("../../services/userService");
@@ -5,7 +9,7 @@ const userService = require("../../services/userService");
 const userController = express.Router();
 
 // Rota para criar um novo usuário/cliente sem autenticação
-userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
+userController.post("/cadastroUsuario", async (req, res) => {
   const { nome, email, senha, confirmacaoSenha } = req.body;
 
   try {
@@ -22,8 +26,8 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
       nome,
       email,
       senha,
-      funcao: "MEDICO",
-      statusAtual: "INATIVO",
+      funcao: "USUARIO",
+      statusAtual: "ATIVO",
     });
 
     return res.status(201).json({ mensagem: "Usuário criado com sucesso!" });
@@ -79,8 +83,8 @@ userController.delete("/:idUser", auth, async (req, res) => {
   }
 });
 
-// Rota autenticada para cadastro de usuários
-userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
+// Cadastro de adm
+userController.post("/cadastroEspecifico", auth, async (req, res) => {
   const { nome, email, senha, confirmacaoSenha, funcao } = req.body;
 
   try {
@@ -88,8 +92,8 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
       return res.status(400).json({ mensagem: "Senha e confirmação de senha não coincidem!" });
     }
 
-    if (!["MEDICO", "ADM"].includes(funcao)) {
-      return res.status(400).json({ mensagem: "Função inválida! Deve ser 'MEDICO' ou 'ADM'." });
+    if (!["MEDICO", "ADM", "USUARIO"].includes(funcao)) {
+      return res.status(400).json({ mensagem: "Função inválida! Deve ser 'MEDICO', 'ADM' ou 'USUARIO'." });
     }
 
     const usuarioExistente = await userService.userExists({ nome, email });

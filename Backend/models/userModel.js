@@ -7,7 +7,6 @@ const UserSchema = new mongoose.Schema({
   senha: { type: String, required: true },
   funcao: { type: String, required: true },
   dataCriacao: { type: Date, default: Date.now },
-  crm: { type: String, required: true, unique: true },
   statusAtual: { type: String, required: true },
 })
 
