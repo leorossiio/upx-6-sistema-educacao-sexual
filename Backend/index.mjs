@@ -7,8 +7,8 @@ dotenv.config();
 
 import loginController from "./Controllers/loginController.js";
 import userController from "./Controllers/autenticadas/userController.js";
-// import perguntaController from "./Controllers/autenticadas/perguntaController.js";
-// import repostaController from "./Controllers/autenticadas/repostaController.js";
+import perguntaController from "./Controllers/autenticadas/perguntaController.js";
+import respostaController from "./Controllers/autenticadas/respostaController.js";
 
 const servidor = express();
 
@@ -16,8 +16,8 @@ servidor.use(express.json());
 
 servidor.use("/login", loginController);
 servidor.use("/users", userController);
-// servidor.use("/perguntas", perguntaController);
-// servidor.use("/repostas", repostaController)
+servidor.use("/perguntas", perguntaController);
+servidor.use("/respostas", respostaController)
 
 // Conexão com o banco de dados MongoDB
 const PORT = process.env.PORT || 3000;  // Porta padrão caso não esteja definida no .env

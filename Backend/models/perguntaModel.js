@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 
 const PerguntaSchema = new mongoose.Schema({
-  idPergunta: { type: String, required: true, unique: true },
   titulo: { type: String, required: true },
   descricao: { type: String, required: true },
-  autor: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // relacionamento com User
+  autor: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   dataCriacao: { type: Date, default: Date.now },
-  respostas: [{ type: mongoose.Schema.Types.ObjectId, ref: "Resposta" }] // referência para as respostas
+  respostas: [{ type: mongoose.Schema.Types.ObjectId, ref: "Resposta" }]
 });
 
 const PerguntaModel = mongoose.model("Pergunta", PerguntaSchema);
