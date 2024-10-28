@@ -8,9 +8,9 @@ const router = express.Router();
 router.post('/', auth, async (req, res) => {
   try {
     const { conteudo, pergunta } = req.body;
-    const autor = req.user.idUser; // Obter o ID do usuário do token
+    const autorResposta = req.user.idUser; // Obter o ID do usuário do token
 
-    const resposta = await RespostaService.criarResposta({ conteudo, autor, pergunta });
+    const resposta = await RespostaService.criarResposta({ conteudo, autorResposta, pergunta });
     res.status(201).json(resposta);
   } catch (error) {
     console.error(error);
@@ -50,14 +50,14 @@ router.put('/:id', auth, async (req, res) => {
   try {
     const { id } = req.params;
     const { conteudo } = req.body;
-    const autor = req.user.idUser; // Obter o ID do usuário do token
+    const autorResposta = req.user.idUser; // Obter o ID do usuário do token
 
     // Verificar se a resposta existe e pertence ao usuário logado
     const resposta = await RespostaService.obterRespostaPorId(id);
     if (!resposta) {
       return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
-    if (resposta.autor.toString() !== autor) {
+    if (resposta.autorResposta.toString() !== autorResposta) {
       return res.status(403).json({ message: 'Você não tem permissão para editar esta resposta.' });
     }
 
@@ -73,14 +73,14 @@ router.put('/:id', auth, async (req, res) => {
 router.delete('/:id', auth, async (req, res) => {
   try {
     const { id } = req.params;
-    const autor = req.user.idUser; // Obter o ID do usuário do token
+    const autorResposta = req.user.idUser; // Obter o ID do usuário do token
 
     // Verificar se a resposta existe e pertence ao usuário logado
     const resposta = await RespostaService.obterRespostaPorId(id);
     if (!resposta) {
       return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
-    if (resposta.autor.toString() !== autor) {
+    if (resposta.autorResposta.toString() !== autorResposta) {
       return res.status(403).json({ message: 'Você não tem permissão para deletar esta resposta.' });
     }
 
