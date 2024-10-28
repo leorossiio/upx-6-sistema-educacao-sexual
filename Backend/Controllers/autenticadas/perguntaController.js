@@ -1,69 +1,93 @@
 const express = require('express');
 const PerguntaService = require('../../services/perguntaService');
+const auth = require("../../middlewares/authentication");
 
 const router = express.Router();
 
-router.get('/listarPerguntas', async (req, res) => {
+// Criar uma nova pergunta
+router.post('/', auth, async (req, res) => {
   try {
-    const perguntas = await PerguntaService.getAllPerguntas();
-    res.json(perguntas);
+    const { titulo, descricao } = req.body;
+    const autor = req.user.idUser; // Obter o ID do usuário do token
+
+    const pergunta = await PerguntaService.criarPergunta({ titulo, descricao, autor });
+    res.status(201).json(pergunta);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error retrieving perguntas' });
+    res.status(500).json({ message: 'Erro ao criar pergunta.' });
   }
 });
 
-router.get('/:idPergunta', async (req, res) => {
-  const { idPergunta } = req.params;
+// Listar todas as perguntas
+router.get('/', async (req, res) => {
   try {
-    const pergunta = await PerguntaService.getPerguntaById(idPergunta);
+    const perguntas = await PerguntaService.listarPerguntas();
+    res.json(perguntas);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao listar perguntas.' });
+  }
+});
+
+// Obter uma pergunta pelo ID
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const pergunta = await PerguntaService.obterPerguntaPorId(id);
     if (!pergunta) {
-      return res.status(404).json({ message: 'Pergunta not found' });
+      return res.status(404).json({ message: 'Pergunta não encontrada.' });
     }
     res.json(pergunta);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error retrieving pergunta' });
+    res.status(500).json({ message: 'Erro ao obter pergunta.' });
   }
 });
 
-router.post('/criarPergunta', async (req, res) => {
-  const newPergunta = req.body;
+// Atualizar uma pergunta
+router.put('/:id', auth, async (req, res) => {
   try {
-    const createdPergunta = await PerguntaService.createPergunta(newPergunta);
-    res.status(201).json(createdPergunta);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json({ message: 'Erro ao criar pergunta' });
-  }
-});
+    const { id } = req.params;
+    const { titulo, descricao } = req.body;
+    const autor = req.user.idUser; // Obter o ID do usuário do token
 
-router.put('/:idPergunta', async (req, res) => {
-  const { idPergunta } = req.params;
-  const updatedPergunta = req.body;
-  try {
-    const updated = await PerguntaService.updatePergunta(idPergunta, updatedPergunta);
-    if (!updated) {
-      return res.status(404).json({ message: 'Pergunta not found' });
+    // Verificar se a pergunta existe e pertence ao usuário logado
+    const pergunta = await PerguntaService.obterPerguntaPorId(id);
+    if (!pergunta) {
+      return res.status(404).json({ message: 'Pergunta não encontrada.' });
     }
-    res.json(updated);
+    if (pergunta.autor.toString() !== autor) {
+      return res.status(403).json({ message: 'Você não tem permissão para editar esta pergunta.' });
+    }
+
+    const perguntaAtualizada = await PerguntaService.atualizarPergunta(id, { titulo, descricao });
+    res.json(perguntaAtualizada);
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: 'Error updating pergunta' });
+    res.status(500).json({ message: 'Erro ao atualizar pergunta.' });
   }
 });
 
-router.delete('/:idPergunta', async (req, res) => {
-  const { idPergunta } = req.params;
+// Deletar uma pergunta
+router.delete('/:id', auth, async (req, res) => {
   try {
-    const deleted = await PerguntaService.deletePergunta(idPergunta);
-    if (!deleted) {
-      return res.status(404).json({ message: 'Pergunta not found' });
+    const { id } = req.params;
+    const autor = req.user.idUser; // Obter o ID do usuário do token
+
+    // Verificar se a pergunta existe e pertence ao usuário logado
+    const pergunta = await PerguntaService.obterPerguntaPorId(id);
+    if (!pergunta) {
+      return res.status(404).json({ message: 'Pergunta não encontrada.' });
     }
-    res.json({ message: 'Pergunta deleted' });
+    if (pergunta.autor.toString() !== autor) {
+      return res.status(403).json({ message: 'Você não tem permissão para deletar esta pergunta.' });
+    }
+
+    await PerguntaService.deletarPergunta(id);
+    res.json({ message: 'Pergunta deletada com sucesso.' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error deleting pergunta' });
+    res.status(500).json({ message: 'Erro ao deletar pergunta.' });
   }
 });
 
