@@ -1,26 +1,36 @@
 const RespostaModel = require('../models/respostaModel');
 
 class RespostaService {
-  static async getRespostasByPerguntaId(idPergunta) {
-    return await RespostaModel.find({ pergunta: idPergunta }).populate('autor');
+
+  async criarResposta({ conteudo, autor, pergunta }) {
+    const novaResposta = new RespostaModel({ conteudo, autor, pergunta });
+    await novaResposta.save();
+
+    // Atualizar a pergunta com a nova resposta
+    await PerguntaModel.findByIdAndUpdate(pergunta, { $push: { respostas: novaResposta._id } }); 
+    return novaResposta;
   }
 
-  static async createResposta(idPergunta, respostaData) {
-    const newResposta = new RespostaModel({ ...respostaData, pergunta: idPergunta });
-    return await newResposta.save();
+  async listarRespostasPorPergunta(perguntaId) {
+    return RespostaModel.find({ pergunta: perguntaId }).populate('autor', 'nome');
   }
 
-  static async getRespostaById(idResposta) {
-    return await RespostaModel.findById(idResposta).populate('autor pergunta');
+  async obterRespostaPorId(id) {
+    return RespostaModel.findById(id).populate('autor', 'nome');
   }
 
-  static async updateResposta(idResposta, updatedData) {
-    return await RespostaModel.findByIdAndUpdate(idResposta, updatedData, { new: true });
+  async atualizarResposta(id, { conteudo }) {
+    return RespostaModel.findByIdAndUpdate(id, { conteudo }, { new: true });
   }
 
-  static async deleteResposta(idResposta) {
-    return await RespostaModel.findByIdAndDelete(idResposta);
+  async deletarResposta(id) {
+    // Remover a resposta da pergunta
+    const resposta = await RespostaModel.findById(id);
+    await PerguntaModel.findByIdAndUpdate(resposta.pergunta, { $pull: { respostas: resposta._id } });
+
+    // Deletar a resposta
+    return RespostaModel.findByIdAndDelete(id);
   }
 }
 
-module.exports = RespostaService;
+module.exports = new RespostaService();

@@ -1,26 +1,27 @@
 const PerguntaModel = require('../models/perguntaModel');
 
 class PerguntaService {
-  static async getAllPerguntas() {
-    return await PerguntaModel.find().populate('autor respostas');
+
+  async criarPergunta({ titulo, descricao, autor }) {
+    const novaPergunta = new PerguntaModel({ titulo, descricao, autor });
+    return novaPergunta.save();
   }
 
-  static async getPerguntaById(idPergunta) {
-    return await PerguntaModel.findById(idPergunta).populate('autor respostas');
+  async listarPerguntas() {
+    return PerguntaModel.find().populate('autor', 'nome').populate('respostas', 'conteudo'); 
   }
 
-  static async createPergunta(pergunta) {
-    const newPergunta = new PerguntaModel(pergunta);
-    return await newPergunta.save();
+  async obterPerguntaPorId(id) {
+    return PerguntaModel.findById(id).populate('autor', 'nome').populate('respostas', 'conteudo');
   }
 
-  static async updatePergunta(idPergunta, updatedPergunta) {
-    return await PerguntaModel.findByIdAndUpdate(idPergunta, updatedPergunta, { new: true });
+  async atualizarPergunta(id, { titulo, descricao }) {
+    return PerguntaModel.findByIdAndUpdate(id, { titulo, descricao }, { new: true });
   }
 
-  static async deletePergunta(idPergunta) {
-    return await PerguntaModel.findByIdAndDelete(idPergunta);
+  async deletarPergunta(id) {
+    return PerguntaModel.findByIdAndDelete(id);
   }
 }
 
-module.exports = PerguntaService;
+module.exports = new PerguntaService();

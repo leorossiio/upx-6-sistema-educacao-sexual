@@ -1,76 +1,94 @@
 const express = require('express');
 const RespostaService = require('../../services/respostaService');
+const auth = require("../../middlewares/authentication");
 
 const router = express.Router();
 
-// Obtém todas as respostas de uma pergunta específica
-router.get('/:idPergunta/respostas', async (req, res) => {
-  const { idPergunta } = req.params;
+// Criar uma nova resposta
+router.post('/', auth, async (req, res) => {
   try {
-    const respostas = await RespostaService.getRespostasByPerguntaId(idPergunta);
+    const { conteudo, pergunta } = req.body;
+    const autor = req.user.idUser; // Obter o ID do usuário do token
+
+    const resposta = await RespostaService.criarResposta({ conteudo, autor, pergunta });
+    res.status(201).json(resposta);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao criar resposta.' });
+  }
+});
+
+// Listar todas as respostas de uma pergunta
+router.get('/pergunta/:perguntaId', async (req, res) => {
+  try {
+    const { perguntaId } = req.params;
+    const respostas = await RespostaService.listarRespostasPorPergunta(perguntaId);
     res.json(respostas);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Erro ao buscar respostas' });
+    res.status(500).json({ message: 'Erro ao listar respostas.' });
   }
 });
 
-// Cria uma nova resposta para uma pergunta específica
-router.post('/:idPergunta/respostas', async (req, res) => {
-  const { idPergunta } = req.params;
-  const newResposta = req.body;
+// Obter uma resposta pelo ID
+router.get('/:id', async (req, res) => {
   try {
-    const createdResposta = await RespostaService.createResposta(idPergunta, newResposta);
-    res.status(201).json(createdResposta);
-  } catch (error) {
-    console.error(error);
-    res.status(400).json({ message: 'Erro ao criar resposta' });
-  }
-});
-
-// Obtém uma resposta específica por ID
-router.get('/:idPergunta/respostas/:idResposta', async (req, res) => {
-  const { idPergunta, idResposta } = req.params;
-  try {
-    const resposta = await RespostaService.getRespostaById(idResposta);
-    if (!resposta || resposta.pergunta.toString() !== idPergunta) {
-      return res.status(404).json({ message: 'Resposta não encontrada ou não pertence à pergunta' });
+    const { id } = req.params;
+    const resposta = await RespostaService.obterRespostaPorId(id);
+    if (!resposta) {
+      return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
     res.json(resposta);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Erro ao buscar resposta' });
+    res.status(500).json({ message: 'Erro ao obter resposta.' });
   }
 });
 
-// Atualiza uma resposta específica
-router.put('/:idPergunta/respostas/:idResposta', async (req, res) => {
-  const { idPergunta, idResposta } = req.params;
-  const updatedResposta = req.body;
+// Atualizar uma resposta
+router.put('/:id', auth, async (req, res) => {
   try {
-    const updated = await RespostaService.updateResposta(idResposta, updatedResposta);
-    if (!updated || updated.pergunta.toString() !== idPergunta) {
-      return res.status(404).json({ message: 'Resposta não encontrada ou não pertence à pergunta' });
+    const { id } = req.params;
+    const { conteudo } = req.body;
+    const autor = req.user.idUser; // Obter o ID do usuário do token
+
+    // Verificar se a resposta existe e pertence ao usuário logado
+    const resposta = await RespostaService.obterRespostaPorId(id);
+    if (!resposta) {
+      return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
-    res.json(updated);
+    if (resposta.autor.toString() !== autor) {
+      return res.status(403).json({ message: 'Você não tem permissão para editar esta resposta.' });
+    }
+
+    const respostaAtualizada = await RespostaService.atualizarResposta(id, { conteudo });
+    res.json(respostaAtualizada);
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: 'Erro ao atualizar resposta' });
+    res.status(500).json({ message: 'Erro ao atualizar resposta.' });
   }
 });
 
-// Deleta uma resposta específica
-router.delete('/:idPergunta/respostas/:idResposta', async (req, res) => {
-  const { idPergunta, idResposta } = req.params;
+// Deletar uma resposta
+router.delete('/:id', auth, async (req, res) => {
   try {
-    const deleted = await RespostaService.deleteResposta(idResposta);
-    if (!deleted || deleted.pergunta.toString() !== idPergunta) {
-      return res.status(404).json({ message: 'Resposta não encontrada ou não pertence à pergunta' });
+    const { id } = req.params;
+    const autor = req.user.idUser; // Obter o ID do usuário do token
+
+    // Verificar se a resposta existe e pertence ao usuário logado
+    const resposta = await RespostaService.obterRespostaPorId(id);
+    if (!resposta) {
+      return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
-    res.json({ message: 'Resposta deletada' });
+    if (resposta.autor.toString() !== autor) {
+      return res.status(403).json({ message: 'Você não tem permissão para deletar esta resposta.' });
+    }
+
+    await RespostaService.deletarResposta(id);
+    res.json({ message: 'Resposta deletada com sucesso.' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Erro ao deletar resposta' });
+    res.status(500).json({ message: 'Erro ao deletar resposta.' });
   }
 });
 
