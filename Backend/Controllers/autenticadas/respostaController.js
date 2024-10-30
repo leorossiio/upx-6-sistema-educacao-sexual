@@ -8,9 +8,11 @@ const router = express.Router();
 router.post('/', auth, async (req, res) => {
   try {
     const { conteudo, pergunta } = req.body;
-    const autorResposta = req.user.idUser; // Obter o ID do usuário do token
+    const autorRespostaId = req.user.idUser; // Obter o ID do usuário do token
+    const autorRespostaNome = req.user.nome;
 
-    const resposta = await RespostaService.criarResposta({ conteudo, autorResposta, pergunta });
+
+    const resposta = await RespostaService.criarResposta({ conteudo, autorRespostaId, autorRespostaNome, pergunta });
     res.status(201).json(resposta);
   } catch (error) {
     console.error(error);
@@ -50,15 +52,17 @@ router.put('/:id', auth, async (req, res) => {
   try {
     const { id } = req.params;
     const { conteudo } = req.body;
-    const autorResposta = req.user.idUser; // Obter o ID do usuário do token
+    const autorRespostaId = req.user.idUser; // Obter o ID do usuário do 
+    const userFuncao = req.user.funcao;
 
     // Verificar se a resposta existe e pertence ao usuário logado
     const resposta = await RespostaService.obterRespostaPorId(id);
     if (!resposta) {
       return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
-    if (resposta.autorResposta.toString() !== autorResposta) {
-      return res.status(403).json({ message: 'Você não tem permissão para editar esta resposta.' });
+
+    if (pergunta.autorRespostaId.toString() !== autorRespostaId && userFuncao !== "ADM") {
+      return res.status(403).json({ message: 'Você não tem permissão para editar esta pergunta.' });
     }
 
     const respostaAtualizada = await RespostaService.atualizarResposta(id, { conteudo });
@@ -73,15 +77,17 @@ router.put('/:id', auth, async (req, res) => {
 router.delete('/:id', auth, async (req, res) => {
   try {
     const { id } = req.params;
-    const autorResposta = req.user.idUser; // Obter o ID do usuário do token
+    const autorRespostaId = req.user.idUser; // Obter o ID do usuário do token
+    const userFuncao = req.user.funcao;
 
     // Verificar se a resposta existe e pertence ao usuário logado
     const resposta = await RespostaService.obterRespostaPorId(id);
     if (!resposta) {
       return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
-    if (resposta.autorResposta.toString() !== autorResposta) {
-      return res.status(403).json({ message: 'Você não tem permissão para deletar esta resposta.' });
+
+    if (pergunta.autorRespostaId.toString() !== autorRespostaId && userFuncao !== "ADM") {
+      return res.status(403).json({ message: 'Você não tem permissão para deletar esta pergunta.' });
     }
 
     await RespostaService.deletarResposta(id);
