@@ -23,7 +23,7 @@ Inicie o servidor:
 npm start  
 
 # .env
-PORT = 3000 || <Porta de preferência, certificar-se de alterar as rotas>
+PORT = 8080 || <Porta de preferência, certificar-se de alterar as rotas>
 DB_NAME = <name_database>
 DB_USER = <user_database>
 DB_PASS = <pass_database>
