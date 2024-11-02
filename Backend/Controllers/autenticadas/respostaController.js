@@ -61,7 +61,7 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
 
-    if (pergunta.autorRespostaId.toString() !== autorRespostaId && userFuncao !== "ADM") {
+    if (resposta.autorRespostaId.toString() !== autorRespostaId && userFuncao !== "ADM") {
       return res.status(403).json({ message: 'Você não tem permissão para editar esta pergunta.' });
     }
 
@@ -86,7 +86,7 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(404).json({ message: 'Resposta não encontrada.' });
     }
 
-    if (pergunta.autorRespostaId.toString() !== autorRespostaId && userFuncao !== "ADM") {
+    if (resposta.autorRespostaId.toString() !== autorRespostaId && userFuncao !== "ADM") {
       return res.status(403).json({ message: 'Você não tem permissão para deletar esta pergunta.' });
     }
 
