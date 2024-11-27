@@ -1,0 +1,156 @@
+/* Configurações gerais */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    position: relative; /* Garante que elementos com posição absoluta sejam relacionados ao body */
+  }
+  
+  /* Container principal */
+  .coleta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Move tudo para o topo */
+    height: 100%;
+    width: 900px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    padding-top: 40px; /* Adiciona espaço para o título */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    position: relative; /* Para manter o conteúdo no contexto */
+  }
+
+  
+  /* Título */
+  .coleta-container .title {
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .white-background {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0 auto;
+    z-index: 1;
+    position: relative;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    z-index: 1;
+  }
+
+  .content img {
+    width: 25%;
+  }
+
+  .content img .hvr-grow {
+    transform: scale(1.05);
+  }
+
+  .coleta-container .texto {
+    display: flex;
+    flex-direction: column;
+    margin-left: -200px;
+  }
+
+  /* Subtítulo */
+.coleta-container .subtitle {
+    font-size: 18px; /* Tamanho do subtítulo */
+    font-weight: 100; /* Peso da fonte mais leve */
+    color: #333;
+    text-align: left;
+    margin-left: -47px;
+  }
+
+  /* Container de endereços */
+.ubs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+    width: 100%;
+  }
+  
+  /* Cartão para cada UBS */
+  .ubs-card {
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%; /* Ajusta a largura dos cartões */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .ubs-card:hover {
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Nome da UBS */
+  .ubs-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  /* Endereço da UBS */
+  .ubs-address {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .city-filter {
+    appearance: none; /* Remove o estilo padrão do navegador */
+    background-color: #FFFFFF;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    outline: none;
+    width: auto;
+    margin-right: 10px;
+    position: relative;
+    font-weight: 600;
+    text-align: center;
+    margin-left: 20px;
+}
+
+/* Estilo do ícone de seta para o seletor */
+.city-filter::after {
+    content: "▼";
+    font-size: 12px;
+    color: #999;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+  
+.filter-container {
+    display: flex;
+    margin-left: 535px;
+}
+
+.filter-label {
+    margin-top: 5px;
+}

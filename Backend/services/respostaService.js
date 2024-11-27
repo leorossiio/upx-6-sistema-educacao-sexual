@@ -4,8 +4,8 @@ const UserModel = require('../models/userModel');
 
 class RespostaService {
 
-  async criarResposta({ conteudo, autorRespostaId, autorRespostaNome, pergunta }) {
-    const novaResposta = new RespostaModel({ conteudo, autorRespostaId, autorRespostaNome, pergunta });
+  async criarResposta({ conteudo, autorResposta, pergunta }) {
+    const novaResposta = new RespostaModel({ conteudo, autorResposta, pergunta });
     await novaResposta.save();
 
     // Atualizar a pergunta com a nova resposta
@@ -14,11 +14,11 @@ class RespostaService {
   }
 
   async listarRespostasPorPergunta(perguntaId) {
-    return RespostaModel.find({ pergunta: perguntaId });
+    return RespostaModel.find({ pergunta: perguntaId }).populate('autorResposta', 'nome');
   }
 
   async obterRespostaPorId(id) {
-    return RespostaModel.findById(id);
+    return RespostaModel.findById(id).populate('autorResposta', 'nome');
   }
 
   async atualizarResposta(id, { conteudo }) {

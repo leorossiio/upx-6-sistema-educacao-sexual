@@ -1,0 +1,439 @@
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: #f5f7fa;
+    padding: 20px;
+    min-height: 100vh; /* Altura mínima para rolar */
+    overflow-y: auto;  /* Ativa a rolagem vertical */
+}
+
+.forum-container {
+    width: 600px;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 999;
+    position: relative;
+    padding-bottom: 20px; /* Para evitar que o último post fique no limite da página */
+}
+
+.forum-background {
+    width: 700px;
+    height: 100%;
+    display: flex;
+    align-self: center;
+    position: fixed;
+    background-color: #D7EAEE;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    top: 0;
+    z-index: 1;
+}
+
+.forum-post {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+    z-index: 999;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.role {
+    font-size: 14px;
+    color: #666;
+}
+
+.tags {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    background-color: #e0f7fa;
+    color: #00796b;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+.post-content {
+    font-size: 16px;
+    color: #333;
+    margin: 15px 0;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-19 {
+    appearance: button;
+    background-color: #FA625F;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .add-post-bar .button-19 {
+    margin-left: 324px;
+  }
+  
+  .button-19:after {
+    background-clip: padding-box;
+    background-color: #FBAE3A;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+  
+  .button-19,
+  .button-19:focus {
+    user-select: auto;
+  }
+  
+  .button-19:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+  }
+  
+  .button-19:disabled {
+    cursor: auto;
+  }
+  
+  .button-19:active {
+    border-width: 4px 0 0;
+    background: none;
+  }
+
+.reaction-icons img {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+}
+
+.add-post-bar {
+    margin-top: 30px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 998;
+    flex-wrap: wrap;
+    padding-bottom: 15px;
+}
+
+.add-post-bar input,
+.add-post-bar textarea {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.like-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.like-button {
+    position: relative; /* Define a posição como relativa para limitar o :after */
+    appearance: button;
+    background-color: #FFFFFF;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #333;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: .8px;
+    line-height: 10px;
+    margin: 0;
+    outline: none;
+    overflow: hidden; /* Limita o overflow para manter o fundo dentro do botão */
+    padding: 8px 12px;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transition: filter .2s;
+    user-select: none;
+    vertical-align: middle;
+    width: auto;
+    gap: 4px;
+}
+
+.like-button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    border-radius: 16px;
+    z-index: -1;
+    transition: background-color 0.2s ease; /* Suaviza a mudança de cor */
+}
+
+.like-button:hover:after {
+    background-color: #ffffff; /* Cor mais clara no hover */
+}
+
+.like-button:active {
+    border-width: 4px 0 0;
+    background: none;
+}
+
+.like-button:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+
+.like-button:disabled {
+    cursor: auto;
+}
+
+/* Estilo do seletor de usuário/anônimo e seção */
+.add-post-bar select {
+    appearance: none; /* Remove o estilo padrão do navegador */
+    background-color: #FFFFFF;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    outline: none;
+    width: auto;
+    margin-right: 10px;
+    position: relative;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Estilo do ícone de seta para o seletor */
+.add-post-bar select::after {
+    content: "▼";
+    font-size: 12px;
+    color: #999;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Estilo para o textarea de conteúdo do post */
+.add-post-bar textarea {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    resize: vertical;
+    color: #333;
+    background-color: #ffffff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    resize: none;
+}
+
+.filter-bar {
+    position: fixed;
+    right: 180px;
+    top: 30px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-bar h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.filter-bar .button-19 {
+    width: 150px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 8px 12px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-bar:focus {
+    border-width: 2px;
+    border-color: #000000;
+}
+
+
+/* Não limita a altura da área de posts */
+.forum-posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.hvr-grow:hover {
+    transform: scale(1.05);
+  }
+  
+  .forum-container .hvr-grow:hover {
+    transform: scale(1.05); /* Garante que a escala seja uniforme */
+  }
+
+  .forum-page .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+  }
+
+  .modal-content .button-19 {
+    margin-top: 10px;
+    margin-left: 365px;
+    align-self: flex-end;
+  }
+
+  .forum-answer-title {
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: #333;
+  }
+
+  .forum-answer {
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+
+  .answer-text {
+    position: fixed;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 350px;
+}
+
+/* Estilo para o textarea */
+.input-area {
+    width: 100%;
+    height: 39px; /* Altura ajustável */
+    border: none; /* Remove a borda */
+    resize: none; /* Remove o redimensionamento */
+    font-size: 16px;
+    padding: 10px;
+    outline: none; /* Remove a borda ao focar */
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: transparent; /* Fundo transparente para integrar ao contêiner */
+  }
+
+.tagm .h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}

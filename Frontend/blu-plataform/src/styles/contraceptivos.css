@@ -1,0 +1,346 @@
+/* Configurações gerais */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+  }
+  
+  /* Container principal */
+  .contraceptivos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Move tudo para o topo */
+    height: 100%;
+    width: 900px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    padding-top: 40px; /* Adiciona espaço para o título */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  
+  /* Título */
+  .title {
+    font-size: 64px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Container do carrossel */
+  .carousel-container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  /* Wrapper para esconder itens fora de tela */
+  .carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 300px;
+  }
+  
+  /* Track dos itens */
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 20px;
+  }
+  
+  .carousel-button.previous {
+    left: 10px;
+  }
+  
+  .carousel-button.next {
+    right: 10px;
+  }
+  
+  /* Estilo dos itens */
+  .carousel-item {
+      flex: 0 0 auto;
+      text-align: center;
+      opacity: 0.5;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+      cursor: pointer;
+      width: 150px; /* Garante que os itens tenham tamanho fixo */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .carousel-item img {
+    width: 100px;
+    height: auto;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .carousel-item h2 {
+    color: #333;
+    margin-top: 10px;
+    opacity: 0;
+    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+    text-overflow: ellipsis; /* Adiciona "..." caso o texto seja muito longo */
+    transition: opacity 0.5s ease;
+  }
+  
+  /* Item selecionado */
+  .carousel-item.selected {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  
+  .carousel-item.selected h2 {
+    opacity: 1;
+    white-space: normal; /* Permite o texto quebrar em várias linhas para o item selecionado */
+    overflow: visible;
+    text-overflow: unset; /* Remove os "..." no item selecionado */
+  }  
+
+  /* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Modal Image */
+.modal-image {
+  max-width: 150px;
+  margin: 20px auto;
+  display: block;
+}
+
+/* Modal Title */
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Modal Description */
+.modal-description {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #555;
+}
+
+/* Modal Efficacy */
+.modal-efficacy {
+  font-size: 14px;
+  font-style: italic;
+  color: #777;
+}
+
+/* Adicionando efeito de crescimento */
+.hvr-grow {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hvr-grow:hover {
+  transform: scale(1.3); /* Aumenta ligeiramente o item ao passar o mouse */
+}
+
+/* Adicionando efeito de crescimento ao item selecionado */
+.carousel-image.hvr-grow {
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-image.hvr-grow:hover {
+  transform: scale(1.3); /* Aumenta suavemente o tamanho do item selecionado */
+}
+
+/* Evita aplicar o efeito de hover em itens não selecionados */
+.carousel-item:not(.selected) .carousel-image {
+  transition: none;
+  transform: none;
+}
+
+/* Fundo branco abrangendo título, seção e carrossel */
+.white-background {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* Seção SEM JULGAMENTOS */
+.no-judgment-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  margin: 20px 0;
+}
+
+.no-judgment-content {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.no-judgment-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.no-judgment-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  text-align: justify;
+}
+
+.no-judgment-image {
+  flex: 1;
+}
+
+.no-judgment-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fundo branco do carrossel */
+.carousel-container {
+  position: relative;
+  max-width: 1000px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.button-19 {
+  appearance: button;
+  background-color: #FA625F;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-19:after {
+  background-clip: padding-box;
+  background-color: #FBAE3A;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.button-19,
+.button-19:focus {
+  user-select: auto;
+}
+
+.button-19:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.button-19:disabled {
+  cursor: auto;
+}
+
+.button-19:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+
+.no-judgment-image {
+  display: inline-block;
+  transform: translateZ(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.no-judgment-image:hover {
+  transform: scale(1.05); /* Garante que a escala seja uniforme */
+}
+
+.arrow-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.carousel-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+}

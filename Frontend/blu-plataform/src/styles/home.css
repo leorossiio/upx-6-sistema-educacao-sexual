@@ -1,0 +1,172 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f4f8;
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+.home-container {
+    width: 100%;
+    min-height: 100vh; /* Permite que a página seja rolável */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ajusta os elementos para rolarem corretamente */
+    align-items: center;
+    position: relative;
+  }
+  
+ /* Estilização do título dos posts em destaque */
+.featured-title {
+  font-size: 50px;
+  font-weight: bold;
+  color: #333;
+  margin: 40px 0 20px; /* Espaçamento para separação */
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  padding-bottom: 50px;
+}
+  
+  /* Estilização do post */
+.post-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0; /* Espaço entre os posts */
+  z-index: 1;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #cbeef0; /* Fundo verde água */
+  border-radius: 16px;
+  padding: 20px;
+  width: 60%;
+  max-width: 1200px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.post-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4A8EA5; /* Fundo verde água */
+  border-radius: 16px;
+  padding: 20px;
+  width: 60%;
+  max-width: 1200px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Estilização da imagem do post */
+.post-image {
+  position: absolute;
+  width: 23%; /* Tamanho proporcional */
+  max-width: 300px;
+}
+
+.post-2 .post-image {
+  position: absolute;
+  margin-left: 400px;
+  width: 28%; /* Tamanho proporcional */
+  max-width: 400px;
+}
+
+/* Estilização do conteúdo do post */
+.home-container .post-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding-left: 320px;
+}
+
+.post-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.post-2 .post-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+  margin-left: -300px;
+}
+
+
+.home-container .post-description {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.home-container .post-2 .post-description {
+  font-size: 16px;
+  color: #FFFFFF;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  margin-left: -300px;
+  max-width: 350px;
+}
+
+/* Estilização do botão do post */
+.post-content .button-19 {
+  margin: auto;
+  margin-left: 0px;
+}
+
+.post-2 .post-content .button-19 {
+  margin: auto;
+  margin-left: -300px;
+}
+
+.welcome-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0; /* Espaço entre os posts */
+  z-index: 1;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff; /* Fundo verde água */
+  border-radius: 16px;
+  padding: 20px;
+  width: auto;
+  max-width: 1200px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.welcome-description {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}

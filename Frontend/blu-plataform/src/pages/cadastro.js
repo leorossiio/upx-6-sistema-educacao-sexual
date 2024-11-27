@@ -1,70 +1,119 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Navbar from '../components/navbar'; // Importando o componente Navbar
 import '../styles/cadastro.css';
-import CadastroImage from '../assets/cadastroImg.svg'; // Importando a imagem
-import homeIcon from '../assets/navIcons/home.svg';
-import infoIcon from '../assets/navIcons/info-circle.svg';
-import sexualidadeIcon from '../assets/navIcons/sexualidadeIcon.svg';
-import locationIcon from '../assets/navIcons/location.svg';
-import forumIcon from '../assets/navIcons/device-message.svg';
-import '../styles/particles.scss'; // Importa o SCSS das partículas
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet"></link>
+import '../styles/navbar.css';
+import CadastroImage from '../assets/cadastroImg.svg';
+import API_BASE_URL from '../apiConfig';
 
 function Cadastro() {
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    senha: '',
+    confirmacaoSenha: '',
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${API_BASE_URL}/users/cadastroUsuario`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert(data.mensagem); // Mensagem de sucesso
+      } else {
+        alert(data.mensagem || 'Erro ao cadastrar');
+      }
+    } catch (error) {
+      console.error('Erro ao cadastrar:', error);
+      alert('Erro ao cadastrar usuário');
+    }
+  };
+
   return (
-    <div className='cadastro-page'>
-        {/* Contêiner de partículas para cobrir toda a tela */}
-        <div id="particle-container">
-          {Array.from({ length: 30 }, (_, i) => (
-            <div key={i} className="particle"></div>
-          ))}
-    </div>
+    <div className="cadastro-page">
+      <Navbar /> {/* Incluindo a mesma Navbar usada no login */}
 
-    {/* Navegação e conteúdo de login */}
-    <nav>
-      <ul>
-        <li><a href="#"><img className="nav-icon" src={homeIcon} alt="inicioIcon" /><span className="nav-item">Início</span></a></li>
-        <li><a href="#"><img className="nav-icon" src={infoIcon} alt="infoIcon" /><span className="nav-item">Sobre nós</span></a></li>
-        <li><a href="#"><img className="nav-icon" src={sexualidadeIcon} alt="sexualidadeIcon" /><span className="nav-item">Sexualidade e Gênero</span></a></li>
-        <li><a href="#"><img className="nav-icon" src={locationIcon} alt="locationIcon" /><span className="nav-item">Pontos de Coleta</span></a></li>
-        <li><a href="#"><img className="nav-icon" src={forumIcon} alt="contatoIcon" /><span className="nav-item">Nosso Fórum</span></a></li>
-      </ul>
-    </nav>
-
-    <div className="cadastro-container">
-      <div className="cadastro-card">
-        <h2 className='hvr-grow'>CADASTRO</h2>
-        <form>
-
-            <div className="form-group">
-                <label>Nome de Usuário</label>
-                <input type="text" placeholder="" />
-            </div>  
-
-            <div className="form-group">
-                <label>E-mail</label>
-                <input type="email" placeholder="" />
-            </div>
-
-            <div className="form-group">
-                <label>Senha</label>
-                <input type="password" placeholder="" />
-            </div>
-
-            <div className="form-group">
-                <label>Confirme a Senha</label>
-                <input type="password" placeholder="" />
-            </div>
-
-          <button type="submit" className='hvr-grow'>Cadastrar</button>
-        </form>
+      {/* Contêiner de partículas para cobrir toda a tela */}
+      <div id="particle-container">
+        {Array.from({ length: 30 }, (_, i) => (
+          <div key={i} className="particle"></div>
+        ))}
       </div>
 
-      <div className="cadastro-image">
-        <img src={CadastroImage} alt="Cadastro Visual" className='hvr-grow'/>
+      <div className="cadastro-container">
+        <div className="cadastro-card">
+          <h2>Cadastro</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Nome de Usuário</label>
+              <input
+                className="hvr-grow"
+                type="text"
+                name="nome"
+                value={formData.nome}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>E-mail</label>
+              <input
+                className="hvr-grow"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Senha</label>
+              <input
+                className="hvr-grow"
+                type="password"
+                name="senha"
+                value={formData.senha}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Confirme a Senha</label>
+              <input
+                className="hvr-grow"
+                type="password"
+                name="confirmacaoSenha"
+                value={formData.confirmacaoSenha}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <button type="submit" className="button-19">
+              Cadastrar
+            </button>
+          </form>
+        </div>
+
+        <div className="cadastro-image">
+          <img src={CadastroImage} alt="Cadastro Visual" className="hvr-grow" />
+        </div>
       </div>
     </div>
-  </div>
   );
 }
 
 export default Cadastro;
+

@@ -1,0 +1,129 @@
+/* Configurações gerais */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    position: relative; /* Garante que elementos com posição absoluta sejam relacionados ao body */
+  }
+  
+  /* Container principal */
+  .sexualidade-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Move tudo para o topo */
+    height: 100%;
+    width: 900px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    padding-top: 40px; /* Adiciona espaço para o título */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    position: relative; /* Para manter o conteúdo no contexto */
+  }
+
+  
+  /* Título */
+  .title {
+    font-size: 64px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .white-background {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0 auto;
+    z-index: 1;
+    position: relative;
+  }
+
+  .main-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    z-index: 1;
+  }
+
+  .main-image img {
+    max-width: 100%;
+    height: auto;
+    z-index: 1;
+  }
+
+  .main-content {
+    flex: 1;
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+  
+  .main-description {
+    padding-top: 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    text-align: justify;
+  }
+
+  .subtitle {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 50px;
+  }
+
+  .text {
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    flex: 1;
+    text-align: justify;
+  }
+
+  .image {
+    flex: 0 0 auto; /* A imagem não redimensiona */
+    max-width: 40%; /* Limita o tamanho da imagem */
+  }
+  
+  .image img {
+    width: 70%; /* A imagem ocupa o tamanho total do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaços brancos extras */
+  }
+
+  .image2 {
+    flex: 0 0 auto; /* A imagem não redimensiona */
+    max-width: 40%; /* Limita o tamanho da imagem */
+  }
+  
+  .image2 img {
+    width: 60%; /* A imagem ocupa o tamanho total do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaços brancos extras */
+    margin-left: 100px;
+  }
+
+  .topic-content {
+    display: flex;
+    align-items: center; /* Alinha o texto e a imagem verticalmente */
+    justify-content: space-between; /* Espaço entre os elementos */
+    gap: 20px; /* Espaço entre o texto e a imagem */
+    margin: 20px 0; /* Espaçamento entre os tópicos */
+  }
+
+  .sexualidade-container .hvr-grow:hover {
+    transform: scale(1.05); /* Garante que a escala seja uniforme */
+  }
+
+  .carousel-container .hvr-grow:hover {
+    transform: scale(1.3);
+  }

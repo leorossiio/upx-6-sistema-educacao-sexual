@@ -3,9 +3,9 @@ const UserModel = require('../models/userModel');
 
 class PerguntaService {
 
-  async criarPergunta({ titulo, descricao, autorPerguntaId, autorPerguntaNome, categoria }) {
+  async criarPergunta({ titulo, descricao, autorPergunta }) {
     try {
-      const novaPergunta = new PerguntaModel({ titulo, descricao, autorPerguntaId, autorPerguntaNome, categoria });
+      const novaPergunta = new PerguntaModel({ titulo, descricao, autorPergunta });
       return await novaPergunta.save();
     } catch (error) {
       console.error("Erro ao criar pergunta:", error);
@@ -16,8 +16,13 @@ class PerguntaService {
   async listarPerguntas() {
     try {
       return await PerguntaModel.find()
+      .populate('autorPergunta', 'nome', UserModel) //TODO - AINDA ESTÁ VINDO COM AUTOR NULL
       .populate({
-        path: 'respostas'
+        path: 'respostas',
+        populate: {
+          path: 'autorResposta',
+          select: 'nome'
+        }
       });
     } catch (error) {
       console.error("Erro ao listar perguntas:", error);
@@ -28,10 +33,11 @@ class PerguntaService {
   async obterPerguntaPorId(id) {
     try {
       const pergunta = await PerguntaModel.findById(id)
+        .populate('autorPergunta', 'nome')
         .populate({
           path: 'respostas',
           populate: {
-            path: 'autorRespostaId',
+            path: 'autorResposta',
             select: 'nome'
           }
         });

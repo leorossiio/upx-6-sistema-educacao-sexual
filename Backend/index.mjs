@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from 'cors';
 
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
@@ -11,6 +12,8 @@ import perguntaController from "./Controllers/autenticadas/perguntaController.js
 import respostaController from "./Controllers/autenticadas/respostaController.js";
 
 const servidor = express();
+
+servidor.use(cors());
 
 servidor.use(express.json());
 
