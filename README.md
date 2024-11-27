@@ -2,7 +2,7 @@
 
 SISTEMA SOBRE EDUCAÇÃO SEXUAL:
 
-Front: Angular 2
+Front: ReactJs
 Back: NodeJs
 Banco:? 
 
