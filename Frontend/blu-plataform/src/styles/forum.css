@@ -68,6 +68,7 @@ body {
 .role {
     font-size: 14px;
     color: #666;
+    font-weight: 300;
 }
 
 .tags {
@@ -437,3 +438,49 @@ body {
     color: #333;
     margin-bottom: 10px;
 }
+
+.response-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .response-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .response-author {
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  .response-content {
+    font-size: 16px;
+    color: #333;
+    margin-top: 15px 0;
+    margin-left: 5px;
+    text-align: left;
+  }
+  
+  .modal-content .responses {
+    max-height: 300px; /* Limita a altura para evitar overflow */
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .question {
+    font-weight: 500;
+    font-size: 20px;
+    padding-right: 20px;
+    color: #333;
+  }

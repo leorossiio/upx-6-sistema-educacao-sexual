@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/sobre.css"; // Estilo específico para a página Sobre
 import "../styles/particles.scss"; // Partículas reutilizadas
 import FixedLogo from "../components/FixedLogo"; // Importa o logo fixo no canto inferior direito
+import Footer from "../components/Footer";
 
 const Sobre = () => {
   const handleContactClick = () => {
@@ -37,17 +38,21 @@ const Sobre = () => {
           <p className="contact-text">
             Não se sentiu incluído? Nos diga como podemos melhorar!
           </p>
-          <button
-            className="button-19 contact-button"
-            onClick={handleContactClick}
-          >
-            Entrar em Contato
-          </button>
+          <a href="mailto:suporte@blu.com?subject=Feedback%20sobre%20o%20projeto%20BLU">
+            <button
+              className="button-19 contact-button"
+              onClick={handleContactClick}
+            >
+              Entrar em Contato
+            </button>
+          </a>
+
         </div>
 
         {/* Logo fixo no canto inferior direito */}
         <FixedLogo />
       </div>
+      <Footer />
     </div>
   );
 };

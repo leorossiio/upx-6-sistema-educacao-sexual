@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "../styles/sexualidade.css";
 import ArrowLeft from '../assets/navIcons/arrow-left.svg';
 import ArrowRight from '../assets/navIcons/arrow-right.svg';
+import Footer from "../components/Footer";
 
 function Sexualidade() {
 
@@ -269,6 +270,7 @@ function Sexualidade() {
     </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }

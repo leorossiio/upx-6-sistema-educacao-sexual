@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/contraceptivos.css';
 import ArrowLeft from '../assets/navIcons/arrow-left.svg';
 import ArrowRight from '../assets/navIcons/arrow-right.svg';
+import Footer from "../components/Footer";
 
 function Contraceptivos() {
   const [selectedItem, setSelectedItem] = useState(0);
@@ -143,7 +144,7 @@ function Contraceptivos() {
               como escolher o método que melhor se adapta às suas necessidades e estilo de vida, sempre
               priorizando sua saúde e bem-estar.
               <br></br><br></br>
-              <b>Role para baixo para saber mais sobre os vários tipos de métodos anticoncepcionais!</b>
+              <div className='contraceptivos-highlight'>Role para baixo para saber mais sobre os vários tipos de métodos anticoncepcionais!</div>
             </p>
           </div>
           <div className="no-judgment-image">
@@ -208,6 +209,7 @@ function Contraceptivos() {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }

@@ -32,7 +32,7 @@ nav ul li a {
     position: relative;
     color: white;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 100;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -92,8 +92,8 @@ a:hover {
     background: none;
     border: none;
     color: white;
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 24px;
+    font-weight: 700;
     text-align: center;
     cursor: pointer;
     display: flex;
@@ -131,4 +131,9 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #c0e8e9;
     cursor: pointer;
+}
+
+.nav-login {
+    font-size: 24px;
+    font-weight: 700;
 }

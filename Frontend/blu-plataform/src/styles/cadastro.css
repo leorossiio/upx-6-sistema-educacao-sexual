@@ -143,3 +143,58 @@
 .cadastro-container .hvr-grow:hover {
   transform: scale(1.05); /* Garante que a escala seja uniforme */
 }
+
+.loading {
+  text-align: center;
+  color: #fff;
+  margin-top: 20%;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cadastro-success-message {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  background-color: #A1D5D6; /* Mesma cor do contêiner */
+  width: 300px;
+  height: 200px;
+  border-radius: 20px;
+  margin: auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  top: 10%;
+  margin-top: 60%;
+}
+
+.cadastro-success-message h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cadastro-success-message button {
+  margin-top: 20px; /* Espaço entre o texto e o botão */
+}

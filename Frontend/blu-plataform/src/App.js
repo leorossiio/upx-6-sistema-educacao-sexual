@@ -6,6 +6,7 @@ import Cadastro from './pages/cadastro';
 import Forum from './pages/forum';
 import Contraceptivos from './pages/Contraceptivos'; // Importa a nova página
 import Sexualidade from "./pages/Sexualidade";
+import Gravidez from "./pages/gravidez";
 import Coleta from "./pages/coleta";
 import Sobre from "./pages/sobre";
 import Navbar from './components/navbar';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/forum" element={<Forum />} />
           <Route path="/contraceptivos" element={<Contraceptivos />} /> {/* Nova rota */}
           <Route path="/sexualidade" element={<Sexualidade />} />
+          <Route path="/gravidez" element={<Gravidez />} />
           <Route path="/coleta" element={<Coleta />} />
           <Route path="/sobre" element={<Sobre />} />
         </Routes>

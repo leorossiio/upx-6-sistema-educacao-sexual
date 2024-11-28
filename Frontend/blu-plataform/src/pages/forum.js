@@ -4,6 +4,7 @@ import '../styles/forum.css';
 import LoginImage from '../assets/user-square.svg';
 import API_BASE_URL from '../apiConfig';
 import { AuthContext } from '../context/AuthContext';
+import Footer from "../components/Footer";
 
 const Forum = () => {
   const { user, token } = useContext(AuthContext);
@@ -230,37 +231,43 @@ const Forum = () => {
       </div>
 
       {isModalOpen && selectedPost && (
-        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-button" onClick={() => setIsModalOpen(false)}>
-              &times;
-            </button>
-            <div className="post-header">
-              <span className="tag">{selectedPost.descricao}</span>
-              <div class="filter-bar-answer">{selectedPost.titulo}</div>
-            </div>
-            <div className="responses">
-              <div class="forum-answer-title">Respostas</div>
-              {selectedPost.respostas?.map((resposta) => (
-                <div key={resposta._id} className="forum-answer">
-                  <p>{resposta.conteudo}</p>
+      <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <button className="close-button" onClick={() => setIsModalOpen(false)}>
+            &times;
+          </button>
+          <div className="post-header">
+            <span className="tag">{selectedPost.descricao}</span>
+            <div className="filter-bar-answer question">{selectedPost.titulo}</div>
+          </div>
+          <div className="responses">
+            <div className="forum-answer-title"></div>
+            {selectedPost.respostas?.map((resposta, index) => (
+              <div key={index} className="response-card">
+                <div className="response-header">
+                  <img src={LoginImage} alt="Avatar" className="avatar" />
+                  <span className="response-author">Usuário</span>
                 </div>
-              ))}
-            </div>
-            <div class="answer-text">
+                <p className="response-content">{resposta.conteudo}</p>
+              </div>
+            ))}
+          </div>
+          <div className="answer-text">
             <textarea
               value={newResponse}
               onChange={(e) => setNewResponse(e.target.value)}
               placeholder="Digite sua resposta..."
               className="input-area"
             ></textarea>
-            </div>
+          </div>
             <button className="button-19" onClick={addNewResponse}>
               Enviar
             </button>
           </div>
         </div>
       )}
+      <div style={{ height: "20px", background: "transparent" }}></div>
+      <Footer />
     </div>
   );
 };

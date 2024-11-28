@@ -18,7 +18,7 @@ function Navbar() {
         <li>
           <a href="/login">
             <img className="nav-icon" src={userIcon} alt="User Icon" />
-            <span className="nav-item">{user ? user.nome : "Visitante"}</span>
+            <span className="nav-item nav-login">{user ? user.nome : "Login e Cadastro"}</span>
           </a>
         </li>
         <li>

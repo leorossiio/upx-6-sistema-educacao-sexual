@@ -15,6 +15,16 @@ body {
     align-items: center;
     position: relative;
   }
+
+  .home-container img {
+    display: inline-block;
+    transform: translateZ(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .home-container img:hover {
+    transform: scale(1.05);
+  }
   
  /* Estilização do título dos posts em destaque */
 .featured-title {
@@ -62,6 +72,21 @@ body {
   overflow: hidden;
 }
 
+.post-3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #3EAEB0; /* Fundo verde água */
+  border-radius: 16px;
+  padding: 20px;
+  width: 60%;
+  max-width: 1200px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  z-index: 0;
+  overflow: visible;
+}
+
 /* Estilização da imagem do post */
 .post-image {
   position: absolute;
@@ -74,6 +99,13 @@ body {
   margin-left: 400px;
   width: 28%; /* Tamanho proporcional */
   max-width: 400px;
+}
+
+.post-3 .post-image {
+  position: absolute;
+  width: 100%; /* Tamanho proporcional */
+  max-width: 400px;
+  margin-left: -100px;
 }
 
 /* Estilização do conteúdo do post */
@@ -101,11 +133,20 @@ body {
 }
 
 
+.post-3 .post-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+
+
 .home-container .post-description {
   font-size: 16px;
   color: #333;
   line-height: 1.5;
   margin-bottom: 20px;
+  font-weight: 100;
 }
 
 .home-container .post-2 .post-description {
@@ -115,7 +156,17 @@ body {
   margin-bottom: 20px;
   margin-left: -300px;
   max-width: 350px;
+  font-weight: 100;
 }
+
+.home-container .post-3 .post-description {
+  font-size: 16px;
+  color: #FFFFFF;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-weight: 100;
+}
+
 
 /* Estilização do botão do post */
 .post-content .button-19 {
@@ -140,28 +191,37 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #ffffff; /* Fundo verde água */
   border-radius: 16px;
   padding: 20px;
   width: auto;
-  max-width: 1200px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
   overflow: hidden;
 }
 
-.welcome-title {
-  font-size: 28px;
+.welcome-subtitle {
+  font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #555;
   margin-bottom: 10px;
   text-align: center;
+}
+
+.welcome-title {
+  font-size: 64px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  z-index: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .welcome-description {
   font-size: 16px;
   color: #333;
   line-height: 1.5;
-  margin-bottom: 20px;
+  text-align: center;
+  max-width: 500px;
+  margin-bottom: -10px;
 }
 
 .welcome-content {
@@ -169,4 +229,145 @@ body {
   flex-direction: column;
   justify-content: center;
   flex: 1;
+}
+
+.balloon {
+  display: flex;
+  background-color: #FFFFFF; /* Cor de fundo do balão */
+  padding: 20px;
+  border-radius: 30px;
+  min-width: 100px;
+  max-width: 270px;
+  min-height: 40px;
+  margin: 20px;
+  position: absolute; /* Torna o posicionamento relativo ao pai */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out, pulse 1.3s infinite;
+  z-index: 10; /* Garante que os balões fiquem acima de outros elementos */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+  color: #333;
+  font-size: 20px;
+}
+
+/* Bolinhas e pontinhas do balão */
+.balloon:before,
+.balloon:after {
+  content: "";
+  background-color: #FFFFFF; /* Cor igual ao balão */
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Bolinha grande no topo esquerdo */
+.balloon:before {
+  width: 44px;
+  height: 44px;
+  top: -12px;
+  left: 230px;
+  box-shadow: -50px 30px 0 -12px #FFFFFF,
+      -210px -6px 0 -2px #FFFFFF,
+      -24px 17px 0 -6px #FFFFFF,
+      -5px 30px 0 -10px #FFFFFF; 
+}
+
+/* Pontinhas menores e efeito de continuidade */
+.balloon:after {
+  bottom: -10px;
+  right: 200px;
+  width: 30px;
+  height: 30px;
+  box-shadow: 40px -34px 0 0 #FFFFFF, /* Primeira bolinha */
+    -28px -6px 0 -2px #FFFFFF, /* Segunda bolinha */
+    -24px 17px 0 -6px #FFFFFF, /* Terceira bolinha */
+    -5px 25px 0 -10px #FFFFFF; /* Quarta bolinha */
+}
+
+/* Animações de fade */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05); /* Aumenta ligeiramente */
+  }
+  100% {
+    transform: scale(1); /* Volta ao tamanho original */
+  }
+}
+
+.hidden {
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+/* Posições específicas dos balões */
+.navbar-balloon {
+  top: 10%;
+  left: 2%; /* Ajuste conforme o layout */
+  z-index: 1000;
+  position: fixed;
+}
+
+.post-balloon {
+  top: 30%;
+  right: 10%; /* Ajuste conforme o layout */
+  position: fixed;
+}
+
+.animated-letters {
+  display: inline-block; /* Necessário para animações */
+  animation: swapLetters 2s infinite; /* Animação infinita */
+}
+
+/* Animação de troca de letras */
+@keyframes swapLetters {
+  0% {
+    content: "o"; /* Inicialmente "o" */
+  }
+  33% {
+    content: "a"; /* Depois "a" */
+  }
+  66% {
+    content: "e"; /* Depois "e" */
+  }
+  100% {
+    content: "o"; /* Retorna ao "o" */
+  }
+}
+
+/* CSS específico para o pseudo-elemento content */
+.animated-letters::before {
+  content: "o"; /* Inicial */
+  animation: swapLetters 2s infinite; /* Aplica a mesma animação */
+}
+
+.post-container a {
+  width: 100px;
+  border-radius: 16px;
 }

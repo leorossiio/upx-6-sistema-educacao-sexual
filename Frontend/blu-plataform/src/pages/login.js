@@ -5,6 +5,7 @@ import '../styles/navbar.css';
 import LoginImage from '../assets/loginImg.svg';
 import API_BASE_URL from '../apiConfig';
 import { AuthContext } from '../context/AuthContext'; // Importa o AuthContext
+import Footer from "../components/Footer";
 
 function Login() {
   const { login, isLoggedIn } = useContext(AuthContext); // Usa o contexto para login global
@@ -128,6 +129,8 @@ function Login() {
           )}
         </div>
       )}
+      <div style={{ height: "20px", background: "transparent" }}></div>
+      <Footer />
     </div>
   );
 }

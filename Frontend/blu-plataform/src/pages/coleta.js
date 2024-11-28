@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/coleta.css";
 import "../styles/particles.scss";
 import MapIcon from "../assets/coleta/Localização.svg"; // Substitua pelo caminho correto do ícone
+import Footer from "../components/Footer";
 
 const Coleta = () => {
   const ubsData = {
@@ -65,6 +66,7 @@ const Coleta = () => {
         </div>
         <br></br><br></br>
       </div>
+      <Footer />
     </div>
   );
 };
