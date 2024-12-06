@@ -16,10 +16,17 @@ function Navbar() {
     <nav>
       <ul>
         <li>
-          <a href="/login">
-            <img className="nav-icon" src={userIcon} alt="User Icon" />
-            <span className="nav-item nav-login">{user ? user.nome : "Login e Cadastro"}</span>
-          </a>
+          {user ? (
+            <a>
+              <img className="nav-icon" src={userIcon} alt="User Icon" />
+              <span className="nav-item nav-login">{user ? `Olá, ${user.nome}` : "Login e Cadastro"}</span>
+            </a>
+          ) : (
+            <a href="/login">
+              <img className="nav-icon" src={userIcon} alt="User Icon" />
+              <span className="nav-item nav-login">Login e Cadastro</span>
+            </a>
+          )}
         </li>
         <li>
           <a href="/sexualidade">
@@ -66,5 +73,6 @@ function Navbar() {
 }
 
 export default Navbar;
+
 
 
